@@ -21,3 +21,14 @@ Facter.add("pkgng_enabled") do
   end
 
 end
+
+Facter.add("pkgng_installed") do
+  confine :kernel => "FreeBSD"
+
+  setcode do
+    if %x{which pkg} == "/usr/sbin/pkg"
+      "true"
+    end
+  end
+
+end
