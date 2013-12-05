@@ -15,9 +15,9 @@ Facter.add("pkgng_enabled") do
   confine :kernel => "FreeBSD"
 
   setcode do
-    if %x{/usr/bin/make -f /etc/make.conf -VWITH_PKGNG} =~ /(yes|true)/i
+    if %x{/usr/bin/make /usr/share/mk/bsd.port.mk -V WITH_PKGNG} =~ /(yes|true)/i
       "true"
-    end if File.exist?('/etc/make.conf')
+    end
   end
 
 end
